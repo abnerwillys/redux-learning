@@ -1,27 +1,30 @@
-import { takeLatest, put, all, call, select } from "redux-saga/effects"
+import { takeLatest, put, all, call } from "redux-saga/effects"
 
-function apiGet(text, todosLength) {
-  return new Promise((resolve, reject) => {
+function apiGet() {
+  return new Promise(resolve => {
     setTimeout(() => {
-      resolve(text + " " + todosLength)
+      resolve([
+        { id: 1, text: "Fazer café 1" },
+        { id: 2, text: "Fazer café 2" },
+        { id: 3, text: "Fazer café 3" },
+        { id: 4, text: "Fazer café 4" },
+      ])
     }, 2000)
   })
 }
 
-function* asyncAddTodo(action) {
+function* getTodoList() {
   try {
-    const todos = yield select(state => state.todos)
+    const response = yield call(apiGet)
 
-    const response = yield call(apiGet, action.payload.text, todos.length)
-
-    yield put({ type: "ADD_TODO", payload: { text: response }})
+    yield put({ type: "SUCCESS_TODO_LIST", payload: { data: response }})
   } catch (error) {
-    yield put({ type: "ACTION_ERROR" })
+    yield put({ type: "FAILURE_TODO_LIST" })
   }
 }
 
 export default function* root() {
   yield all([
-    takeLatest("ASYNC_ADD_TODO", asyncAddTodo)
+    takeLatest("REQUEST_TODO_LIST", getTodoList)
   ])
 }
