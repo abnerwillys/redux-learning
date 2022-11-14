@@ -8,3 +8,6 @@
 
 3- Selectors on Redux using reselect
   - Class Url: https://youtu.be/3GpRg-PdbEU
+
+4- Duck Pattern and Redux Sauce
+  - Class Url: https://youtu.be/q-If9n-tUyA
