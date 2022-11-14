@@ -42,9 +42,16 @@ class TodoList extends Component {
   }
 }
 
+
+// Esse method mapea o estado que queremos da store para as props do component
 const mapStateToProps = state => ({
   todos: state.todos
 })
+
+// Esse method mapea as actions que queremos da store para as props do component
+// Usamos o bindActionCreators para criar essa estrutura.
 const mapDispatchToProps = dispatch => bindActionCreators(todoActions, dispatch)
 
+// Por fim com o connect deixamos nosso component linkado com a store passando nossos maps, e o componente em questao.
+// Dessa forma se o estado alterar, ou se dispararmos uma action, ele responderá de acordo.
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

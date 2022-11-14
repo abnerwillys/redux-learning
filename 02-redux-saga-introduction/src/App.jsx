@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
-import Counter from './components/Counter';
 import TodoList from './components/TodoList';
 import store from './redux/store';
 
@@ -9,8 +8,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
+          <h1>App</h1>
           <TodoList />
-          <Counter />
         </div>
       </Provider>
     )
