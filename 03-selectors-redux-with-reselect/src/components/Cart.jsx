@@ -34,11 +34,12 @@ const calculateCartTotal = createSelector(
   // Colocamos quantos estados quisermos como parametros iniciais. O Ultimo parametro é uma
   // funcao que recebera esses estados observados, respectivamente (na ordem que foi declarado)
   cart => cart.items,
-  (items) => {
+  cart => cart.shipping_value,
+  (items, shipping_value) => {
     // Agora esse valor sera calculado apenas quando houver mudança nos estados observados
     console.log("CALCULOU")
 
-    return (items.reduce((subtotal, item) => subtotal + item.price, 0))
+    return (items.reduce((subtotal, item) => subtotal + item.price + shipping_value, 0))
   }
 )
 
