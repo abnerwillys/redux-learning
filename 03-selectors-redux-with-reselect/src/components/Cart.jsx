@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import { createSelector } from "reselect"
 
 import * as cartActions from "../redux/actions/cart"
 
@@ -29,18 +30,21 @@ const Cart = ({
   </div>
 )
 
-// Essa função já é um Selector
-const calculateTotal = (items) => {
-  // Quando calcular o frete esse log vai disparar. Isso é ruim para performance, 
-  // pois o total nao tem relação com o frete. Devido a isso utilizamos o reselect.
-  console.log("CALCULOU")
+const calculateCartTotal = createSelector(
+  // Colocamos quantos estados quisermos como parametros iniciais. O Ultimo parametro é uma
+  // funcao que recebera esses estados observados, respectivamente (na ordem que foi declarado)
+  cart => cart.items,
+  (items) => {
+    // Agora esse valor sera calculado apenas quando houver mudança nos estados observados
+    console.log("CALCULOU")
 
-  return (items.reduce((subtotal, item) => subtotal + item.price, 0))
-}
+    return (items.reduce((subtotal, item) => subtotal + item.price, 0))
+  }
+)
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  total: calculateTotal(state.cart.items)
+  total: calculateCartTotal(state.cart)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(cartActions, dispatch)
