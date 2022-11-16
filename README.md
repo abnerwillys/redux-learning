@@ -2,6 +2,7 @@
 
 1- Basic Redux React Old Redux
   - Class Url: https://youtu.be/69e1MoUWE1g
+  - Class 2 Url: https://youtu.be/u99tNt3TZf8
 
 2- Redux Saga React Introduction
   - Class Url: https://youtu.be/qU9DesjDJic
