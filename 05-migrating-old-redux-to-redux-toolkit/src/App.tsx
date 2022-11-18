@@ -1,17 +1,18 @@
 import reactLogo from './assets/react.svg'
 import './App.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { TYPES } from './redux/old-redux'
+import { useDispatch } from 'react-redux'
+import { increment, incrementAmount } from './redux/toolkit-redux/features/counter/counter-slice'
+import { useAppSelector } from './redux/toolkit-redux/hooks'
 
 function App() {
-  const count = useSelector(state => state.counter.value)
+  const count = useAppSelector(state => state.counter.value)
   const dispatch = useDispatch()
 
   const handleIncrement = () => {
-    dispatch({ type: TYPES.INCREMENT })
+    dispatch(increment())
   }
   const handleIncrementAmount = () => {
-    dispatch({ type: TYPES.INCREMENT_AMOUNT, payload: 5 })
+    dispatch(incrementAmount(5))
   }
 
   return (
