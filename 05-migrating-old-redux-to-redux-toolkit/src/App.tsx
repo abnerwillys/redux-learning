@@ -1,14 +1,17 @@
 import reactLogo from './assets/react.svg'
 import './App.css'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { TYPES } from './redux/old-redux'
 
-function App({ count, increment, incrementAmount }) {
+function App() {
+  const count = useSelector(state => state.counter.value)
+  const dispatch = useDispatch()
+
   const handleIncrement = () => {
-    increment()
+    dispatch({ type: TYPES.INCREMENT })
   }
   const handleIncrementAmount = () => {
-    incrementAmount(5)
+    dispatch({ type: TYPES.INCREMENT_AMOUNT, payload: 5 })
   }
 
   return (
@@ -43,7 +46,11 @@ function App({ count, increment, incrementAmount }) {
   )
 }
 
-const mapStateToProps = (state) => ({
+export default App
+
+/* === Redux Antigo === */
+
+/* const mapStateToProps = (state) => ({
   count: state.counter.value
 })
 
@@ -52,4 +59,4 @@ const mapDispatchToProps = (dispatch) => ({
   incrementAmount: (amount) => dispatch({ type: TYPES.INCREMENT_AMOUNT, payload: amount })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App) */
