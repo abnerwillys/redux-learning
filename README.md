@@ -35,5 +35,6 @@
     - Redux Toolkit;
     - Migrating from Old Redux to New Redux(toolkit);
     - Redux Hooks;
+    - Redux DevTools;
     - Redux with Typescript.
   - Class Url: https://youtu.be/HGMd3dbB-lM

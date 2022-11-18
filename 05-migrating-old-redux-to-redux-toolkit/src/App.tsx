@@ -1,9 +1,15 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import { connect } from 'react-redux'
+import { TYPES } from './redux/old-redux'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({ count, increment, incrementAmount }) {
+  const handleIncrement = () => {
+    increment()
+  }
+  const handleIncrementAmount = () => {
+    incrementAmount(5)
+  }
 
   return (
     <div className="App">
@@ -17,8 +23,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <p>
           count is {count}
+        </p>
+        <button onClick={handleIncrement}>
+          increment 1
+        </button>
+        <button onClick={handleIncrementAmount}>
+          increment 5
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
@@ -31,4 +43,13 @@ function App() {
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  count: state.counter.value
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch({ type: TYPES.INCREMENT }),
+  incrementAmount: (amount) => dispatch({ type: TYPES.INCREMENT_AMOUNT, payload: amount })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
