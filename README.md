@@ -38,3 +38,10 @@
     - Redux Hooks;
     - Redux DevTools;
     - Redux with Typescript.
+
+6- Rocketseat GoStack Redux Bonus
+  - Class Url: https://app.rocketseat.com.br/node/redux/group/conceitos-4/lesson/gerenciamento-de-estado
+  - Topics covered:
+    - ?
+    - ?
+    - ?
